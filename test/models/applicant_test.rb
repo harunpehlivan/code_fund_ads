@@ -19,6 +19,7 @@
 #  referring_campaign_id   :bigint(8)
 #  referring_property_id   :bigint(8)
 #  referring_impression_id :uuid
+#  referring_user_id       :bigint(8)
 #
 
 require "test_helper"

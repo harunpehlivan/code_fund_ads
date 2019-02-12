@@ -57,6 +57,8 @@
 #  referring_campaign_id   :bigint(8)
 #  referring_property_id   :bigint(8)
 #  referring_impression_id :uuid
+#  referral_code           :string
+#  referral_click_count    :integer          default(0)
 #
 
 class User < ApplicationRecord
@@ -86,6 +88,7 @@ class User < ApplicationRecord
 
   # callbacks .................................................................
   before_save :ensure_roles
+  before_save :ensure_referral_code
 
   # scopes ....................................................................
   scope :administrators, -> { with_all_roles ENUMS::USER_ROLES::ADMINISTRATOR }
@@ -211,5 +214,9 @@ class User < ApplicationRecord
 
   def ensure_roles
     self.roles = roles & ENUMS::USER_ROLES.values
+  end
+
+  def ensure_referral_code
+    self.referral_code ||= SecureRandom.urlsafe_base64(8)
   end
 end

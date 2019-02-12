@@ -19,6 +19,7 @@
 #  referring_campaign_id   :bigint(8)
 #  referring_property_id   :bigint(8)
 #  referring_impression_id :uuid
+#  referring_user_id       :bigint(8)
 #
 
 class Applicant < ApplicationRecord
@@ -170,7 +171,7 @@ class Applicant < ApplicationRecord
       email: email,
       organization_id: organization_id,
       roles: [role],
-      referring_user_id: referring_property&.user_id,
+      referring_user_id: referring_user_id || referring_property&.user_id,
       referring_campaign_id: referring_campaign_id,
       referring_property_id: referring_property_id,
       referring_impression_id: referring_impression_id

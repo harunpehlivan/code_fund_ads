@@ -7,10 +7,15 @@ class AdvertisersController < ApplicationController
     @applicant = Applicant.new(applicant_params)
 
     if session[:ref].present?
-      impression = Impression.where(id: session[:ref]).first
+      impression = Impression.find_by(id: session[:ref])
       @applicant.referring_campaign_id = impression&.campaign_id
       @applicant.referring_property_id = impression&.property_id
       @applicant.referring_impression_id = impression&.id
+    end
+
+    if session[:referral_code].present?
+      user = User.find_by(referral_code: session[:referral_code])
+      @applicant.referring_user_id = user&.id
     end
 
     if @applicant.save

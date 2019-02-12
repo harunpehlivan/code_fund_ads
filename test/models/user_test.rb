@@ -57,6 +57,8 @@
 #  referring_campaign_id   :bigint(8)
 #  referring_property_id   :bigint(8)
 #  referring_impression_id :uuid
+#  referral_code           :string
+#  referral_click_count    :integer          default(0)
 #
 
 require "test_helper"
