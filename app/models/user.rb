@@ -209,9 +209,11 @@ class User < ApplicationRecord
   end
 
   def referral_revenue
-    referred_users.publishers.sum do |user|
+    value = referred_users.publishers.sum do |user|
       user.property_revenue(user.created_at, user.created_at.advance(months: 3)) * 0.05
     end
+    value = Monetize.parse("$0.00 USD") unless value.is_a?(Money)
+    value
   end
 
   # protected instance methods ................................................
