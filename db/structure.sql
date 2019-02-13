@@ -142,9 +142,6 @@ CREATE TABLE public.applicants (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     invited_user_id bigint,
-    referring_campaign_id bigint,
-    referring_property_id bigint,
-    referring_impression_id uuid,
     referring_user_id bigint
 );
 
@@ -807,9 +804,6 @@ CREATE TABLE public.users (
     organization_id bigint,
     stripe_customer_id character varying,
     referring_user_id bigint,
-    referring_campaign_id bigint,
-    referring_property_id bigint,
-    referring_impression_id uuid,
     referral_code character varying,
     referral_click_count integer DEFAULT 0
 );
@@ -2134,6 +2128,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190206211639'),
 ('20190208174416'),
 ('20190212171451'),
-('20190212221227');
+('20190212221227'),
+('20190213224041');
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_221227) do
+ActiveRecord::Schema.define(version: 2019_02_13_224041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -57,9 +57,6 @@ ActiveRecord::Schema.define(version: 2019_02_12_221227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "invited_user_id"
-    t.bigint "referring_campaign_id"
-    t.bigint "referring_property_id"
-    t.uuid "referring_impression_id"
     t.bigint "referring_user_id"
   end
 
@@ -445,9 +442,6 @@ ActiveRecord::Schema.define(version: 2019_02_12_221227) do
     t.bigint "organization_id"
     t.string "stripe_customer_id"
     t.bigint "referring_user_id"
-    t.bigint "referring_campaign_id"
-    t.bigint "referring_property_id"
-    t.uuid "referring_impression_id"
     t.string "referral_code"
     t.integer "referral_click_count", default: 0
     t.index "lower((email)::text)", name: "index_users_on_email", unique: true

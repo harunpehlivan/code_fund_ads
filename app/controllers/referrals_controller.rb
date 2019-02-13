@@ -3,7 +3,7 @@ class ReferralsController < ApplicationController
 
   def new
     session[:referral_code] = params[:referral_code]
-    IncrementReferralLinkClickCountJob.perform_later session[:referral_code]
-    redirect_to publishers_path
+    IncrementReferralLinkClickCountJob.perform_later params[:referral_code]
+    redirect_to root_path
   end
 end
