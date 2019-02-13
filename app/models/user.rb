@@ -208,6 +208,12 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def referral_revenue
+    referred_users.publishers.sum do |user|
+      user.property_revenue(user.created_at, user.created_at.advance(months: 3)) * 0.05
+    end
+  end
+
   # protected instance methods ................................................
 
   # private instance methods ..................................................
