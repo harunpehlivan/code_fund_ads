@@ -29,7 +29,6 @@ class Coupon < ApplicationRecord
   # callbacks .................................................................
   # scopes ....................................................................
   # additional config (i.e. accepts_nested_attribute_for etc...) ..............
-  monetize :fixed_price_cents, numericality: {greater_than_or_equal_to: 0}
 
   # class methods .............................................................
   class << self
@@ -41,12 +40,15 @@ class Coupon < ApplicationRecord
     quantity > claimed && expires_at > Time.now
   end
 
+  def percentage?
+    coupon_type == ENUMS::COUPON_TYPES::PERCENTAGE
+  end
+
   def apply_discount(amount)
     return amount unless active?
 
     case coupon_type
     when ENUMS::COUPON_TYPES::PERCENTAGE then amount * ((100 - discount_percent).to_f / 100.0)
-    when ENUMS::COUPON_TYPES::FIXED_PRICE then fixed_price
     else amount
     end
   end

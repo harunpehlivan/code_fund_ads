@@ -122,7 +122,7 @@ Rails.application.routes.draw do
 
   get "/invite/:referral_code", to: "referrals#new", as: :invite
   resources :referrals, only: [:index]
-  
+
   resources :templates
   resources :themes
   resources :users
