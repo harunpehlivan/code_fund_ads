@@ -29,11 +29,9 @@ module Impressionable
   end
 
   def daily_impressions_counts(start_date = nil, end_date = nil)
-    key = "#{cache_key}/#{__method__}/#{start_date&.cache_key}-#{end_date&.cache_key}"
+    key = "#{cache_key}/#{__method__}/#{Date.coerce(start_date).cache_key}-#{Date.coerce(end_date).cache_key}"
     Rails.cache.fetch key do
-      probable_dates_with_impressions(start_date, end_date).map do |date|
-        daily_impressions_count date
-      end
+      impressions.between(start_date, end_date).group(:displayed_at_date).count.values
     end
   end
 
@@ -81,20 +79,17 @@ module Impressionable
   end
 
   def daily_clicks_count_cache_key(date)
-    "#{cache_key}/#{DAILY_CLICKS_COUNT_KEY}/#{date.iso8601}"
+    "#{cache_key}/#{DAILY_CLICKS_COUNT_KEY}/#{Date.coerce(date).iso8601}"
   end
 
   def daily_clicks_count(date = nil)
-    date = Date.coerce(date)
     Rails.cache.fetch(daily_clicks_count_cache_key(date)) { impressions.on(date).clicked.count }.to_i
   end
 
   def daily_clicks_counts(start_date = nil, end_date = nil)
-    key = "#{cache_key}/#{__method__}/#{start_date&.cache_key}-#{end_date&.cache_key}"
+    key = "#{cache_key}/#{__method__}/#{Date.coerce(start_date).cache_key}-#{Date.coerce(end_date).cache_key}"
     Rails.cache.fetch(key) {
-      probable_dates_with_impressions(start_date, end_date).map do |date|
-        daily_clicks_count date
-      end
+      impressions.clicked.between(start_date, end_date).group(:displayed_at_date).count.values
     }
   end
 
