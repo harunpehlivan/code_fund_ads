@@ -39,36 +39,6 @@ module Impressionable
     daily_impressions_count(date).to_i / 1_000.to_f
   end
 
-  # Returns an Array of probable dates with impressions
-  #
-  # No dates are missed; however, there may be false positives
-  # i.e. dates returned that don't actually have impressions
-  #
-  # NOTE: This method outperforms #dates_with_impressions
-  def probable_dates_with_impressions(start_date = nil, end_date = nil)
-    relation = impressions.
-      select(Impression.arel_table[:displayed_at_date].minimum.as("min")).
-      select(Impression.arel_table[:displayed_at_date].maximum.as("max")).
-      limit(1)
-    relation = relation.between(start_date, end_date) if start_date && end_date
-    relation = relation.on(start_date) if start_date && end_date.nil?
-    result = self.class.connection.execute(relation.to_sql).first
-    return [] unless result["min"]
-    min = Date.coerce(result["min"])
-    max = Date.coerce(result["max"])
-    (min..max).to_a
-  end
-
-  def dates_with_impressions(start_date = nil, end_date = nil)
-    return impressions.between(start_date, end_date).distinct(:displayed_at_date).pluck(:displayed_at_date) if start_date
-    impressions.distinct(:displayed_at_date).pluck(:displayed_at_date)
-  end
-
-  def dates_with_clicked_impressions(start_date = nil, end_date = nil)
-    return impressions.clicked.between(start_date, end_date).distinct(:displayed_at_date).pluck(:displayed_at_date) if start_date
-    impressions.clicked.distinct(:displayed_at_date).pluck(:displayed_at_date)
-  end
-
   def total_clicks_count_cache_key
     "#{cache_key}/#{TOTAL_CLICKS_COUNT_KEY}"
   end
