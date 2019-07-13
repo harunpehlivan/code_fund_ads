@@ -31,7 +31,7 @@ gem "liquid",                             "~> 4.0.1"
 gem "mailgun-ruby",                       "~> 1.1.11"
 gem "maxminddb",                          "~> 0.1.22"
 gem "meta-tags",                          "~> 2.11.1"
-gem "mini_magick",                        "~> 4.9.2" # intended for use with ActiveStorage & graphicsmagick
+gem "mini_magick", "~> 4.9.4" # intended for use with ActiveStorage & graphicsmagick
 gem "monetize",                           "~> 1.9.0"
 gem "money",                              "~> 6.13.1"
 gem "money-rails",                        "~> 1.13.0"
