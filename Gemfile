@@ -20,7 +20,7 @@ gem "country_select",                     "~> 3.1.1"
 gem "devise",                             "~> 4.5.0"
 gem "devise_invitable",                   "~> 1.7.5"
 gem "diffy",                              "~> 3.2.1"
-gem "email_address",                      "~> 0.1.11"
+gem "email_address", "~> 0.1.11"
 gem "faker",                              ">= 1.9.1", require: false
 gem "gibbon",                             "~> 3.2.0"
 gem "hiredis",                            "~> 0.6.3"
