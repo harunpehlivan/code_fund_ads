@@ -45,7 +45,7 @@ gem "premailer",                          "~> 1.11.1"
 gem "premailer-rails",                    "~> 1.10.2"
 gem "pretender",                          "~> 0.3.3"
 gem "puma",                               "~> 3.12"
-gem "rails",                              "~> 5.2.1"
+gem "rails", "~> 6.0.3", ">= 6.0.3.5"
 gem "recaptcha",                          "~> 4.13.1"
 gem "redis",                              "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "rinku",                              "~> 2.0.4"
