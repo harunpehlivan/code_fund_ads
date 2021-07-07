@@ -5,12 +5,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.1"
 
-gem "active_link_to",                     "~> 1.0.5"
+gem "active_link_to", "~> 1.0.5"
 gem "acts_as_commentable_with_threading", "~> 2.0.1"
 gem "aws-sdk-s3",                         "~> 1.29.0", require: false
 gem "barnes",                             "~> 0.0.7"
 gem "bootsnap",                           ">= 1.1.0", require: false
-gem "buffer",                             "0.1.3", github: "bufferapp/buffer-ruby"
+gem "buffer", "0.1.3", github: "bufferapp/buffer-ruby"
 gem "bulk_insert",                        "~> 1.7.0"
 gem "cable_ready",                        "~> 2.0.7"
 gem "camo",                               "~> 0.1.0"
@@ -41,8 +41,8 @@ gem "pagy",                               "~> 0.21.0"
 gem "paper_trail",                        "~> 10.0.1"
 gem "perm",                               "~> 1.0.2"
 gem "pg",                                 ">= 0.18", "< 2.0"
-gem "premailer",                          "~> 1.11.1"
-gem "premailer-rails",                    "~> 1.10.2"
+gem "premailer", "~> 1.11.1"
+gem "premailer-rails", "~> 1.10.2"
 gem "pretender",                          "~> 0.3.3"
 gem "puma",                               "~> 3.12"
 gem "rails",                              "~> 5.2.1"
@@ -82,7 +82,7 @@ group :development do
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
   gem "annotate"
-  gem "letter_opener_web"
+  gem "letter_opener_web", ">= 1.3.4"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "mechanize"
   gem "meta_request" # RailsPanel Chrome extension
@@ -96,7 +96,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara", ">= 2.15"
+  gem "capybara", ">= 3.13.2"
   gem "chromedriver-helper"
   gem "selenium-webdriver"
   gem "timecop"
